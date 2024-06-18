@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="galery-item">
+                <img src="image/image1.jpg" alt="">
+        </div>
+        <div class="galery-item">
+                <img src="image/image2.jpg" alt="">
+        </div>
+        <div class="galery-item">
+                <img src="image/image3.jpg" alt="">
+        </div>
+        <div class="galery-item">
+                <img src="image/image4.jpg" alt="">
+        </div>
+        <div class="galery-item">
+                <img src="image/image5.jpeg" alt="">
+        </div>
+        <div class="galery-item">
+                <img src="image/image6.jpg" alt="">
+        </div>
+        <div class="galery-item">
+                <img src="image/image7.jpg" alt="">
+        </div>
+        <div class="galery-item">
+                <img src="image/image8.jpeg" alt="">
+        </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal">
+        <span class="close">X</span>
+        <img src="" alt="" class="img-content" id="modal-image">
+        <a class="prev" id="prev">&#10094;</a>
+        <a class="next" id="next">&#10095;</a>
+    </div>
+    
+    <script>
+        var modal=document.getElementById('modal');
+        var modal_image=document.getElementById('modal-image');
+        var close=document.getElementsByClassName('close')[0];
+        var prev=document.getElementById('prev');
+        var next=document.getElementById('next');
+        var images=document.querySelectorAll('.galery-item img');
+        currentIndex=0;
+
+        close.onclick=function(){
+            modal.style.display='none';
+        }
+        next.onclick=function(){
+            showImage(currentIndex+1);
+        }
+        prev.onclick=function(){
+            showImage(currentIndex-1);
+        }
+        function showImage(i){
+            if(i>=images.length){
+                currentIndex=0
+            }
+            else if(i<0){
+                currentIndex=images.length-1;
+                console.log(currentIndex);
+            }
+            else{
+                currentIndex=i;
+            }
+            modal_image.src=images[currentIndex].src;
+            modal.style.display='block'
+        }
+
+        images.forEach(function(img,i){
+            img.addEventListener('click',function(){
+                showImage(i);
+            })
+        })
+    </script>
+
+</body>
+</html>
